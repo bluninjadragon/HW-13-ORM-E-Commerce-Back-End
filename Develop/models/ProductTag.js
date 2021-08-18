@@ -18,7 +18,7 @@ ProductTag.init(
       allowNull: false,
       references: {
         model: "product",
-        id: "id",
+        key: "id",
       },
     },
     tag_id: {
@@ -26,7 +26,7 @@ ProductTag.init(
       allowNull: false,
       references: {
         model: "tag",
-        id: "id",
+        key: "id",
       },
     },
   },
