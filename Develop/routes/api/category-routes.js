@@ -5,21 +5,28 @@ const { Category, Product } = require("../../models");
 
 router.get("/", (req, res) => {
   // find all categories
+  // be sure to include its associated Products
+  //tutor recommended using this promise
   Category.findAll({
     include: [Product],
   })
     .then((data) => res.json(data))
     .catch((error) => res.json(error));
-  // be sure to include its associated Products
 });
 
 router.get("/:id", (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
+  Category.findByPk(req.params.id, { include: [Product] })
+    .then((data) => res.json(data))
+    .catch((error) => res.json(error));
 });
 
 router.post("/", (req, res) => {
   // create a new category
+  Category.create(req.body)
+    .then((data) => res.json(data))
+    .catch((error) => res.json(error));
 });
 
 router.put("/:id", (req, res) => {
