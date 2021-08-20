@@ -18,6 +18,11 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
+  Product.findByPk(req.params.id, {
+    include: [{ model: Category }, { model: Tag }],
+  })
+    .then((data) => res.json(data))
+    .catch((error) => res.json(error));
 });
 
 // create new product
