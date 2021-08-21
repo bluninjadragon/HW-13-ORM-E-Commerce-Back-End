@@ -42,7 +42,9 @@ router.put("/:id", (req, res) => {
         id: req.params.id,
       },
     }
-  );
+  )
+    .then((data) => res.json(data))
+    .catch((error) => res.json(data));
 });
 
 router.delete("/:id", (req, res) => {
